@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>LSUIElement</key>
+	<true/>
+	<key>CFBundleName</key>
+	<string>TimePie</string>
+	<key>CFBundleIdentifier</key>
+	<string>controllers.Main</string>
+	<key>CFBundleVersion</key>
+	<string>100.0</string>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<string>true</string>
+	<key>CFBundleExecutable</key>
+	<string>JavaApplicationStub</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleIconFile</key>
+	<string>greenicon.icns</string>
+	<key>Java</key>
+	<dict>
+		<key>WorkingDirectory</key>
+		<string>$APP_PACKAGE/Contents/Resources/Java</string>
+		<key>MainClass</key>
+		<string>controllers.Main</string>
+		<key>JVMVersion</key>
+		<string>1.6+</string>
+		<key>ClassPath</key>
+		<array>
+			<string>$JAVAROOT/TimePie.jar</string>
+			<string>$JAVAROOT/xstream-1.4.4.jar</string>
+		</array>
+	</dict>
+</dict>
+</plist>
