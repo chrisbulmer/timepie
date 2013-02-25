@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package models;
 
 import com.thoughtworks.xstream.XStream;
@@ -10,7 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,30 +17,34 @@ import java.util.logging.Logger;
  * @author Chris Bulmer
  */
 public class DataStore {
-    
-    private ArrayList<Project> projects;
-    
+
+    private HashMap<UUID, Project> projects;
+    public static Project currentProject;
     
     
     private DataStore() {
         
     }
     
-    
     /**
      * Get the projects
      * @return all the projects
      */
-    public synchronized ArrayList<Project> getProjects(){
+    synchronized HashMap<UUID, Project> getProjects(){
         return this.projects;
     }
     
-    /**
-     * Set the projects
-     * @param projects 
-     */
-    public synchronized void setProjects(ArrayList<Project> projects){
-        this.projects = projects;
+    synchronized void setProject(Project project){
+        this.projects.put(project.getUuid(), project);
+        this.save();
+    }
+    
+    synchronized void removeProject(Project project){
+        System.out.println(projects);
+        this.projects.remove(project.getUuid());
+        this.save();
+        System.out.println(projects);
+
     }
     
     /**
@@ -67,12 +69,12 @@ public class DataStore {
             XStream xstream = new XStream(new StaxDriver()); // does not require XPP3 library starting with Java 6
 
             try {
-                projects = (ArrayList<Project>)xstream.fromXML(new FileReader("datastore.xml"));
+                projects = (HashMap<UUID, Project>)xstream.fromXML(new FileReader("datastore.xml"));
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(DataStore.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            projects = new ArrayList<Project>();
+            projects = new HashMap<UUID, Project>();
         }
     }
     
